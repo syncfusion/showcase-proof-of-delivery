@@ -1,0 +1,45 @@
+{
+  "baseUrl": "http://localhost:4320/proof-of-delivery/react/",
+  "routes": [
+    {
+      "name": "deliveries",
+      "path": "./deliveries",
+      "settleMs": 1500
+    },
+    {
+      "name": "sign-express-parcel",
+      "path": "./sign/express-parcel-4471",
+      "settleMs": 6000
+    },
+    {
+      "name": "sign-registered-document",
+      "path": "./sign/registered-document-7045",
+      "settleMs": 6000
+    },
+    {
+      "name": "healthz",
+      "path": "./healthz",
+      "settleMs": 800
+    }
+  ],
+  "themes": {
+    "light": {
+      "colorScheme": "light"
+    },
+    "dark": {
+      "colorScheme": "dark"
+    }
+  },
+  "screenshotDir": "../../validation/screenshots/carrier-look-check",
+  "allowTrialBanner": false,
+  "colourRules": [],
+  "notes": {
+    "themes.colorScheme": "This app keeps its theme only in sessionStorage for the tab, so a fresh browser context cannot preset it. The copied browser-check.mjs passes themes.<name>.colorScheme to the browser context, and the app follows prefers-color-scheme.",
+    "colourRules": "None: the app has no chart or banded value (app-plan.md, Colour semantics).",
+    "confirmed route": "/confirmed/:deliveryId and the read-only review need a receipt signed in this session, so they are covered by journey-check.mjs and build-journey.mjs, not here.",
+    "server": "Run against the production build served by node server.mjs (PORT=4320), not the dev server."
+  },
+  "loading": {
+    "network": "fast3g"
+  }
+}

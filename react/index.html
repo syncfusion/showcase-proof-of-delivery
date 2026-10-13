@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <link rel="icon" href="/favicon.ico" />
+    <!-- Syncfusion theme first so the factory tokens in the app stylesheet override its variables. -->
+    <link rel="stylesheet" href="/styles/syncfusion/tailwind3.css" />
+    <title>Showcase - Proof of Delivery</title>
+    <script>
+      // The theme chosen in this tab survives a refresh (sessionStorage); a new session starts from the system setting.
+      (function () { var t = null; try { t = sessionStorage.getItem('proof-of-delivery-theme'); } catch (e) {} if (t !== 'light' && t !== 'dark') { t = 'light'; try { if (matchMedia('(prefers-color-scheme: dark)').matches) t = 'dark'; } catch (e) {} } document.documentElement.dataset.theme = t; document.documentElement.classList.toggle('e-dark-mode', t === 'dark'); })();
+    </script>
+    <!-- Loading states (factory/standards/app-source-baseline.md): the indicator styles live here because the
+         app's CSS and the Syncfusion theme bundle have not loaded yet. src/ui/components/AppLoading.tsx reuses them. -->
+    <style>
+      :root { --app-loading-bg: #f8fafc; --app-loading-fg: #667085; --app-loading-ring: #175cd3; --app-loading-track: #dbe5f5; }
+      :root[data-theme='dark'] { --app-loading-bg: #0f172a; --app-loading-fg: #94a3b8; --app-loading-ring: #60a5fa; --app-loading-track: #1e3a6e; }
+      html, body { margin: 0; background: var(--app-loading-bg); }
+      .app-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+        min-height: 240px; padding: 24px; box-sizing: border-box; color: var(--app-loading-fg);
+        font: 500 14px/1.4 Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; text-align: center; }
+      .app-loading--screen { position: fixed; inset: 0; min-height: 0; background: var(--app-loading-bg); z-index: 3000; }
+      .app-loading--overlay { position: absolute; inset: 0; min-height: 0; background: var(--app-loading-bg); z-index: 5; }
+      .app-loading__ring { width: 36px; height: 36px; border-radius: 50%; box-sizing: border-box;
+        border: 3px solid var(--app-loading-track); border-top-color: var(--app-loading-ring); animation: app-loading-spin 0.8s linear infinite; }
+      @keyframes app-loading-spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) { .app-loading__ring { animation: none; border-color: var(--app-loading-ring); } }
+    </style>
+  </head>
+  <body>
+    <div id="root"><div class="app-loading app-loading--screen" role="status" aria-live="polite"><div class="app-loading__ring" aria-hidden="true"></div><div>Loading Proof of Delivery…</div></div></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

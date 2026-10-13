@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "fixtureVersion": 2,
+  "carrier": {
+    "name": "Bluecrest Parcel Service",
+    "routeLabel": "Route 12 · Signature stops"
+  },
+  "deliveries": [
+    {
+      "id": "standard-parcel-2210",
+      "stop": 1,
+      "trackingNumber": "BCP 2210 4583 71",
+      "service": "Standard Parcel",
+      "recipient": {
+        "name": "Elena Marsh",
+        "addressLine1": "12 Harbor View Terrace",
+        "addressLine2": "Cedar Hollow, OR 97001"
+      },
+      "sender": "Juniper Home Goods",
+      "item": "Kitchen scale",
+      "weight": "2.1 lb",
+      "file": "receipts/standard-parcel-2210-signed.pdf",
+      "signatureField": {
+        "name": "recipient_signature",
+        "page": 1,
+        "bounds": {
+          "X": 72,
+          "Y": 560,
+          "Width": 260,
+          "Height": 72
+        }
+      },
+      "delivered": {
+        "minutesBeforeOpen": 95
+      }
+    },
+    {
+      "id": "certified-letter-3047",
+      "stop": 2,
+      "trackingNumber": "BCP 3047 9126 40",
+      "service": "Certified Letter",
+      "recipient": {
+        "name": "Owen Fitzgerald",
+        "addressLine1": "305 Birchwood Avenue",
+        "addressLine2": "Cedar Hollow, OR 97001"
+      },
+      "sender": "Cedar Hollow Housing Office",
+      "item": "Lease documents",
+      "weight": "",
+      "file": "receipts/certified-letter-3047-signed.pdf",
+      "signatureField": {
+        "name": "recipient_signature",
+        "page": 1,
+        "bounds": {
+          "X": 72,
+          "Y": 560,
+          "Width": 260,
+          "Height": 72
+        }
+      },
+      "delivered": {
+        "minutesBeforeOpen": 40
+      }
+    },
+    {
+      "id": "express-parcel-4471",
+      "stop": 3,
+      "trackingNumber": "BCP 4471 2086 19",
+      "service": "Express Parcel",
+      "recipient": {
+        "name": "Maya Okafor",
+        "addressLine1": "218 Larch Street, Apt 4",
+        "addressLine2": "Cedar Hollow, OR 97001"
+      },
+      "sender": "Northfield Electronics",
+      "item": "Laptop computer",
+      "weight": "4.8 lb",
+      "file": "receipts/express-parcel-4471.pdf",
+      "signatureField": {
+        "name": "recipient_signature",
+        "page": 1,
+        "bounds": {
+          "X": 72,
+          "Y": 560,
+          "Width": 260,
+          "Height": 72
+        }
+      }
+    },
+    {
+      "id": "certified-letter-5302",
+      "stop": 4,
+      "trackingNumber": "BCP 5302 7741 06",
+      "service": "Certified Letter",
+      "recipient": {
+        "name": "Daniel Reyes",
+        "addressLine1": "77 Quarry Lane",
+        "addressLine2": "Cedar Hollow, OR 97001"
+      },
+      "sender": "Alder & Finch Law Office",
+      "item": "Legal documents",
+      "weight": "",
+      "file": "receipts/certified-letter-5302.pdf",
+      "signatureField": {
+        "name": "recipient_signature",
+        "page": 1,
+        "bounds": {
+          "X": 72,
+          "Y": 560,
+          "Width": 260,
+          "Height": 72
+        }
+      }
+    },
+    {
+      "id": "insured-parcel-6118",
+      "stop": 5,
+      "trackingNumber": "BCP 6118 3390 52",
+      "service": "Insured Parcel",
+      "recipient": {
+        "name": "Priya Raman",
+        "addressLine1": "1402 Wren Court",
+        "addressLine2": "Cedar Hollow, OR 97003"
+      },
+      "sender": "Halden Timepieces",
+      "item": "Wristwatch",
+      "weight": "0.9 lb",
+      "file": "receipts/insured-parcel-6118.pdf",
+      "signatureField": {
+        "name": "recipient_signature",
+        "page": 1,
+        "bounds": {
+          "X": 72,
+          "Y": 560,
+          "Width": 260,
+          "Height": 72
+        }
+      }
+    },
+    {
+      "id": "registered-document-7045",
+      "stop": 6,
+      "trackingNumber": "BCP 7045 1167 83",
+      "service": "Registered Document",
+      "recipient": {
+        "name": "Tom Becker",
+        "addressLine1": "9 Mill Pond Road",
+        "addressLine2": "Cedar Hollow, OR 97003"
+      },
+      "sender": "Ferncrest Credit Union",
+      "item": "Replacement bank card",
+      "weight": "",
+      "file": "receipts/registered-document-7045.pdf",
+      "signatureField": {
+        "name": "recipient_signature",
+        "page": 1,
+        "bounds": {
+          "X": 72,
+          "Y": 560,
+          "Width": 260,
+          "Height": 72
+        }
+      }
+    }
+  ]
+}

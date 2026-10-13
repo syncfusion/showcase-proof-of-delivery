@@ -1,0 +1,128 @@
+/* Factory baseline v1.3.0: primitive -> semantic -> component tokens.
+   Generated applications copy/adapt this source into their platform stylesheet;
+   component styles consume semantic/component tokens, never raw visual values. */
+:root {
+  /* Primitive: color */
+  --sf-color-white: #ffffff;
+  --sf-color-slate-25: #f8fafc;
+  --sf-color-slate-50: #f6f8fb;
+  --sf-color-slate-100: #eef2f6;
+  --sf-color-slate-200: #e5e9f0;
+  --sf-color-slate-300: #d0d5dd;
+  --sf-color-slate-500: #667085;
+  --sf-color-slate-700: #344054;
+  --sf-color-slate-900: #172033;
+  --sf-color-blue-50: #eef4ff;
+  --sf-color-blue-200: #d6e4ff;
+  --sf-color-blue-600: #175cd3;
+  --sf-color-green-50: #ecfdf3;
+  --sf-color-green-600: #027a48;
+  --sf-color-amber-50: #fffaeb;
+  --sf-color-amber-600: #b54708;
+  --sf-color-red-50: #fef3f2;
+  --sf-color-red-600: #b42318;
+  /* Primitive: chart category colours (vivid; one hue family per slot, the same family in both themes). */
+  --sf-color-chart-blue: #3b82f6;
+  --sf-color-chart-teal: #0d9488;
+  --sf-color-chart-fuchsia: #a21caf;
+  --sf-color-chart-slate: #334155;
+  --sf-color-chart-sky: #0369a1;
+  --sf-color-chart-cyan: #0891b2;
+  --sf-color-chart-purple: #a855f7;
+  --sf-color-chart-indigo: #4f46e5;
+
+  /* Primitive: spacing, radius, elevation, typography */
+  --sf-space-1: 4px; --sf-space-2: 8px; --sf-space-3: 12px;
+  --sf-space-4: 16px; --sf-space-5: 20px; --sf-space-6: 24px;
+  --sf-radius-sm: 6px; --sf-radius-md: 8px; --sf-radius-lg: 12px; --sf-radius-xl: 14px;
+  --sf-size-kpi-icon: 34px;
+  --sf-size-kpi-min-height: 136px;
+  --sf-shadow-sm: 0 1px 3px rgb(16 24 40 / 8%);
+  --sf-font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Semantic: light */
+  --color-sf-bg-primary: var(--sf-color-slate-50);
+  --color-sf-bg-surface: var(--sf-color-white);
+  --color-sf-bg-surface-muted: var(--sf-color-slate-25);
+  --color-sf-bg-surface-hover: var(--sf-color-blue-50);
+  --color-sf-fg-primary: var(--sf-color-slate-900);
+  --color-sf-fg-secondary: var(--sf-color-slate-500);
+  --color-sf-border-primary: var(--sf-color-slate-200);
+  --color-sf-border-strong: var(--sf-color-slate-300);
+  --color-sf-fg-brand-primary: var(--sf-color-blue-600);
+  --color-sf-bg-brand-subtle: var(--sf-color-blue-50);
+  --color-sf-border-brand: var(--sf-color-blue-200);
+  --color-sf-bg-success-primary: var(--sf-color-green-50);
+  --color-sf-fg-success-primary: var(--sf-color-green-600);
+  --color-sf-bg-warning-primary: var(--sf-color-amber-50);
+  --color-sf-fg-warning-primary: var(--sf-color-amber-600);
+  --color-sf-bg-danger-primary: var(--sf-color-red-50);
+  --color-sf-fg-danger-primary: var(--sf-color-red-600);
+  --color-sf-bg-info-primary: var(--sf-color-blue-50);
+  --color-sf-fg-info-primary: var(--sf-color-blue-600);
+  --color-sf-bg-neutral-primary: var(--sf-color-slate-100);
+  --color-sf-fg-neutral-primary: var(--sf-color-slate-500);
+  /* Categorical series tell things apart and never use the status hues (design-system.md, "Colour semantics").
+     Vivid, for normal vision; checked by factory/tools/palette-check.mjs. Order: neighbouring slots differ most. */
+  --color-sf-chart-series-1: var(--sf-color-chart-blue);
+  --color-sf-chart-series-2: var(--sf-color-chart-teal);
+  --color-sf-chart-series-3: var(--sf-color-chart-fuchsia);
+  --color-sf-chart-series-4: var(--sf-color-chart-slate);
+  --color-sf-chart-series-5: var(--sf-color-chart-sky);
+  --color-sf-chart-series-6: var(--sf-color-chart-cyan);
+  --color-sf-chart-series-7: var(--sf-color-chart-purple);
+  --color-sf-chart-series-8: var(--sf-color-chart-indigo);
+  /* A reference line or mark that judges nothing: a budget, a target, last year. */
+  --color-sf-chart-reference: var(--sf-color-slate-500);
+  --color-sf-focus-ring: var(--sf-color-blue-600);
+
+  /* Component */
+  --app-shell-bg: var(--color-sf-bg-primary);
+  --app-card-bg: var(--color-sf-bg-surface);
+  --app-card-border: var(--color-sf-border-primary);
+  --app-card-shadow: var(--sf-shadow-sm);
+  --app-nav-active-bg: var(--color-sf-bg-brand-subtle);
+  --app-nav-active-fg: var(--color-sf-fg-brand-primary);
+  --app-kpi-bg: var(--color-sf-bg-surface);
+  --app-kpi-content-inset-inline: var(--sf-space-4);
+  --app-kpi-content-inset-block: var(--sf-space-6);
+  --app-kpi-min-height: var(--sf-size-kpi-min-height);
+  --app-kpi-icon-size: var(--sf-size-kpi-icon);
+  --app-kpi-icon-inset-inline: var(--sf-space-4);
+  --app-kpi-icon-title-offset: calc(var(--sf-space-4) + 1px);
+  --app-kpi-icon-bg: var(--color-sf-bg-success-primary);
+  --app-kpi-icon-fg: var(--color-sf-fg-success-primary);
+  --app-kpi-focus-ring: var(--color-sf-focus-ring);
+  --app-focus-ring: var(--color-sf-focus-ring);
+}
+
+:root[data-theme="dark"] {
+  /* Primitive overrides for dark mode */
+  --sf-color-white: #111827;
+  --sf-color-slate-25: #1f2937;
+  --sf-color-slate-50: #0f172a;
+  --sf-color-slate-100: #172554;
+  --sf-color-slate-200: #334155;
+  --sf-color-slate-300: #475569;
+  --sf-color-slate-500: #94a3b8;
+  --sf-color-slate-700: #cbd5e1;
+  --sf-color-slate-900: #e5e7eb;
+  --sf-color-blue-50: #1e3a8a;
+  --sf-color-blue-200: #1d4ed8;
+  --sf-color-blue-600: #93c5fd;
+  --sf-color-green-50: #052e1b;
+  --sf-color-green-600: #86efac;
+  --sf-color-amber-50: #451a03;
+  --sf-color-amber-600: #fbbf24;
+  --sf-color-red-50: #450a0a;
+  --sf-color-red-600: #fca5a5;
+  --sf-color-chart-blue: #3b82f6;
+  --sf-color-chart-teal: #2dd4bf;
+  --sf-color-chart-fuchsia: #e879f9;
+  --sf-color-chart-slate: #64748b;
+  --sf-color-chart-sky: #0ea5e9;
+  --sf-color-chart-cyan: #22d3ee;
+  --sf-color-chart-purple: #a855f7;
+  --sf-color-chart-indigo: #6366f1;
+  --sf-shadow-sm: 0 1px 3px rgb(0 0 0 / 35%);
+}

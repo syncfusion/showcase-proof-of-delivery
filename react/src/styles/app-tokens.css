@@ -1,0 +1,141 @@
+/* App-specific tokens (design/DESIGN.md and openspec/changes/carrier-look/design/DESIGN.md).
+   tokens.css is the factory baseline, unchanged. This file holds this app's one recorded extension, its own
+   five-colour palette in the arrangement the user chose (P1), in the baseline's three layers, and the app's own
+   component tokens. */
+
+/* ---- Primitive: the palette. The only raw colour values this app adds; every tint below is mixed from these. ---- */
+:root {
+  --pod-ink: #146c84;        /* Ink: header band, actions, stop numbers */
+  --pod-ink-dark: #0f5669;   /* Ink, one step darker: hover; the band in dark mode */
+  --pod-ink-deep: #0a3a47;   /* Ink, darkest: pressed; text on lime and on amber */
+  --pod-ink-light: #8cc3d0;  /* Ink, lightened: links and accents on a dark surface */
+  --pod-lime: #c3d638;       /* Dominant: delivered */
+  --pod-amber: #f3b34f;      /* Surface: route strip, slip header */
+  --pod-accent: #61929a;     /* Accent: awaiting badges, brand borders */
+  --pod-detail: #cecca1;     /* Detail: page background tint */
+  --pod-white: #ffffff;
+  /* Ink and its light form as red, green, blue: the Syncfusion theme reads its base primary in this form. */
+  --pod-ink-rgb: rgba(20, 108, 132);
+  --pod-ink-light-rgb: rgba(140, 195, 208);
+}
+
+/* ---- Semantic: the baseline's brand roles, remapped for this app ---- */
+:root {
+  --color-sf-fg-brand-primary: var(--pod-ink);
+  --color-sf-bg-brand-subtle: color-mix(in srgb, var(--pod-detail) 35%, var(--pod-white));
+  --color-sf-border-brand: var(--pod-accent);
+  --app-on-brand: var(--pod-white);
+  --app-brand-fill: var(--pod-ink);
+  --app-brand-fill-hover: var(--pod-ink-dark);
+  --app-brand-fill-pressed: var(--pod-ink-deep);
+  --app-brand-fill-disabled: color-mix(in srgb, var(--pod-accent) 55%, var(--pod-white));
+  /* Delivered is lime wherever it appears, always with a check or a label beside it. */
+  --app-delivered-fill: var(--pod-lime);
+  --app-on-delivered: var(--pod-ink-deep);
+  /* The page background: the baseline's, warmed with the Detail colour. */
+  --app-shell-bg: color-mix(in srgb, var(--pod-detail) 22%, var(--pod-white));
+}
+:root[data-theme="dark"] {
+  --color-sf-fg-brand-primary: var(--pod-ink-light);
+  --color-sf-bg-brand-subtle: color-mix(in srgb, var(--pod-ink) 30%, var(--color-sf-bg-surface));
+  --color-sf-border-brand: var(--pod-accent);
+  --app-brand-fill-disabled: color-mix(in srgb, var(--pod-ink) 45%, var(--color-sf-bg-surface));
+  --app-shell-bg: var(--color-sf-bg-primary);
+}
+
+/* ---- Component: the Syncfusion Tailwind 3 theme's primary variables, so its controls follow the brand.
+   The theme sets them on :root (light) and .e-dark-mode (dark); these come later and match or beat both. ---- */
+:root, :root.e-dark-mode {
+  --color-sf-primary-text-color: var(--app-on-brand);
+  --color-sf-primary-text: var(--app-on-brand);
+  --color-sf-primary-text-hover: var(--app-on-brand);
+  --color-sf-primary-text-focus: var(--app-on-brand);
+  --color-sf-primary-text-pressed: var(--app-on-brand);
+  --color-sf-primary-bg-color: var(--app-brand-fill);
+  --color-sf-primary-border-color: var(--app-brand-fill);
+  --color-sf-primary-bg-color-hover: var(--app-brand-fill-hover);
+  --color-sf-primary-border-color-hover: var(--app-brand-fill-hover);
+  --color-sf-primary-bg-color-focus: var(--app-brand-fill-hover);
+  --color-sf-primary-border-color-focus: var(--app-brand-fill-hover);
+  --color-sf-primary-bg-color-pressed: var(--app-brand-fill-pressed);
+  --color-sf-primary-border-color-pressed: var(--app-brand-fill-pressed);
+  --color-sf-primary-bg-color-disabled: var(--app-brand-fill-disabled);
+  --color-sf-primary-border-color-disabled: var(--app-brand-fill-disabled);
+  --color-sf-primary-outline: var(--color-sf-fg-brand-primary);
+}
+:root {
+  --color-sf-primary: var(--pod-ink-rgb);
+  --color-sf-primary-light: var(--pod-accent);
+  --color-sf-primary-lighter: color-mix(in srgb, var(--pod-detail) 45%, var(--pod-white));
+  --color-sf-primary-dark: var(--pod-ink-dark);
+  --color-sf-primary-darker: var(--pod-ink-deep);
+}
+:root.e-dark-mode {
+  --color-sf-primary: var(--pod-ink-light-rgb);
+  --color-sf-primary-light: var(--pod-ink-dark);
+  --color-sf-primary-lighter: var(--pod-ink-deep);
+  --color-sf-primary-dark: var(--pod-ink-light);
+  --color-sf-primary-darker: var(--pod-accent);
+}
+
+/* ---- Component: the app's own surfaces ---- */
+:root {
+  --app-topbar-height: 56px;
+  /* The header band: solid Ink with white controls, in both themes. */
+  --app-topbar-surface: var(--pod-ink);
+  --app-topbar-fg: var(--pod-white);
+  --app-topbar-fg-muted: color-mix(in srgb, var(--pod-white) 82%, transparent);
+  --app-topbar-divider: color-mix(in srgb, var(--pod-white) 30%, transparent);
+  --app-topbar-control-border: color-mix(in srgb, var(--pod-white) 55%, transparent);
+  --app-topbar-control-hover: color-mix(in srgb, var(--pod-white) 16%, transparent);
+  --app-topbar-control-pressed: color-mix(in srgb, var(--pod-white) 26%, transparent);
+  --app-content-max: 960px;
+
+  --app-delivery-card-surface: var(--app-card-bg);
+  --app-delivery-card-border: var(--app-card-border);
+  /* The whole card opens its delivery: its border on hover, and its focus ring. */
+  --app-delivery-card-hover-border: var(--pod-accent);
+  /* The stop number that leads each card, and the card's edge. */
+  --app-stop-bg: var(--app-brand-fill);
+  --app-stop-fg: var(--app-on-brand);
+  --app-stop-done-bg: var(--app-delivered-fill);
+  --app-stop-done-fg: var(--app-on-delivered);
+
+  --app-route-surface: color-mix(in srgb, var(--pod-amber) 22%, var(--pod-white));
+  --app-route-border: color-mix(in srgb, var(--pod-amber) 70%, var(--pod-white));
+
+  /* Badges: awaiting in an Accent tint, delivered in a lime tint; each with an icon and a label. */
+  --app-badge-info-bg: color-mix(in srgb, var(--pod-accent) 22%, var(--pod-white));
+  --app-badge-info-fg: var(--pod-ink);
+  --app-badge-success-bg: color-mix(in srgb, var(--pod-lime) 45%, var(--pod-white));
+  --app-badge-success-fg: var(--pod-ink-deep);
+  --app-badge-neutral-bg: var(--color-sf-bg-neutral-primary);
+  --app-badge-neutral-fg: var(--color-sf-fg-neutral-primary);
+
+  /* The delivery slip: an amber strip, and the signature shown as on paper in both themes. */
+  --app-slip-strip-bg: var(--pod-amber);
+  --app-slip-strip-fg: var(--pod-ink-deep);
+  --app-slip-signature-surface: var(--pod-white);
+  --app-slip-signature-ink: var(--pod-ink-deep); /* a fixed dark ink: the surface is white in both themes */
+  --app-slip-signature-border: var(--color-sf-border-primary);
+
+  --app-sign-subheader-surface: var(--color-sf-bg-surface);
+  --app-viewer-canvas: var(--color-sf-bg-surface-muted);
+  --app-touch-target: 44px;
+  /* The Next button beside the receipt page: brand fill, white text, in both themes. */
+  --app-next-flag-bg: var(--app-brand-fill);
+  --app-next-flag-bg-hover: var(--app-brand-fill-hover);
+  --app-next-flag-bg-pressed: var(--app-brand-fill-pressed);
+  --app-next-flag-fg: var(--app-on-brand);
+  --app-next-flag-point: 14px;
+}
+:root[data-theme="dark"] {
+  --app-topbar-surface: var(--pod-ink-dark);
+  --app-delivery-card-hover-border: var(--pod-ink-light);
+  --app-route-surface: color-mix(in srgb, var(--pod-amber) 14%, var(--color-sf-bg-surface));
+  --app-route-border: color-mix(in srgb, var(--pod-amber) 45%, var(--color-sf-bg-surface));
+  --app-badge-info-bg: color-mix(in srgb, var(--pod-accent) 30%, var(--color-sf-bg-surface));
+  --app-badge-info-fg: var(--pod-ink-light);
+  --app-badge-success-bg: color-mix(in srgb, var(--pod-lime) 22%, var(--color-sf-bg-surface));
+  --app-badge-success-fg: var(--pod-lime);
+}

@@ -1,0 +1,7 @@
+node_modules
+dist
+*.tsbuildinfo
+public/styles/syncfusion/
+public/ej2-pdfviewer-lib/
+.env
+.env.local

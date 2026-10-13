@@ -1,0 +1,205 @@
+@import "tailwindcss";
+/* The Syncfusion Tailwind 3 theme is linked from index.html (see scripts/copy-theme.mjs). */
+@import "./tokens.css";
+@import "./app-tokens.css";
+
+@layer base {
+  /* Tailwind 4's preflight gives buttons the arrow; everything clickable shows the pointer (design-system.md). */
+  button:not(:disabled), [role="button"], a[href], summary, label[for] { cursor: pointer; }
+}
+
+html, body, #root { height: 100%; }
+body { margin: 0; font-family: var(--sf-font-sans); font-size: 14px; background: var(--app-shell-bg); color: var(--color-sf-fg-primary); }
+:focus-visible { outline: 2px solid var(--app-focus-ring); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.text-link { color: var(--color-sf-fg-brand-primary); font-weight: 600; text-decoration: underline; }
+
+/* ---- Shell: top bar (Syncfusion AppBar) above a scroll-contained main area ---- */
+.app-frame { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.e-appbar.app-topbar { flex: none; height: var(--app-topbar-height); min-height: var(--app-topbar-height); gap: var(--sf-space-3); padding: 0 var(--sf-space-5);
+  background: var(--app-topbar-surface); color: var(--app-topbar-fg); border-bottom: 0; box-shadow: none; }
+.app-brand { display: inline-flex; align-items: center; gap: var(--sf-space-2); font-weight: 700; font-size: 15px; color: var(--app-topbar-fg); text-decoration: none; border-radius: var(--sf-radius-sm); }
+.app-brand-mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--sf-radius-md); background: var(--app-topbar-control-hover); color: var(--app-topbar-fg); }
+/* The brand link is the way back to Deliveries: on hover its whole surface lightens on the band. */
+.app-brand { padding: 4px var(--sf-space-3) 4px 4px; margin-left: -4px; border-radius: var(--sf-radius-md); }
+.app-brand:hover { background: var(--app-topbar-control-hover); }
+.app-brand:active { background: var(--app-topbar-control-pressed); }
+.app-icon-button { display: grid; place-items: center; width: 36px; height: 36px; border-radius: var(--sf-radius-md); border: 1px solid transparent; background: transparent; color: var(--app-topbar-fg); }
+.app-icon-button:hover { background: var(--app-topbar-control-hover); border-color: var(--app-topbar-control-border); }
+.app-icon-button:active { background: var(--app-topbar-control-pressed); }
+.app-route-label { margin-left: var(--sf-space-3); padding-left: var(--sf-space-3); border-left: 1px solid var(--app-topbar-divider); font-size: 13px; color: var(--app-topbar-fg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Controls on the band are white; their focus ring too. */
+.app-topbar .e-btn.e-outline.app-reset { background: transparent; color: var(--app-topbar-fg); border-color: var(--app-topbar-control-border); }
+.app-topbar .e-btn.e-outline.app-reset:hover, .app-topbar .e-btn.e-outline.app-reset:focus { background: var(--app-topbar-control-hover); color: var(--app-topbar-fg); border-color: var(--app-topbar-fg); }
+.app-topbar .e-btn.e-outline.app-reset:active { background: var(--app-topbar-control-pressed); color: var(--app-topbar-fg); }
+.app-topbar .e-btn.e-outline.app-reset:disabled { color: var(--app-topbar-fg-muted); border-color: var(--app-topbar-divider); }
+.app-topbar :focus-visible { outline-color: var(--app-topbar-fg); }
+/* App buttons that carry a Lucide icon beside their text (not the PDF Viewer's own toolbar buttons). */
+.e-btn.app-reset, .delivery-actions .e-btn, .confirmed-actions .e-btn, .sign-actions .e-btn, .state-actions .e-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--sf-space-2); }
+.app-main { flex: 1; min-height: 0; overflow: auto; }
+@media (max-width: 639.98px) {
+  .e-appbar.app-topbar { padding: 0 var(--sf-space-3); gap: var(--sf-space-2); }
+  .app-route-label, .app-reset .btn-text { display: none; }
+}
+
+/* Toasts sit under the top bar. */
+.e-toast-container.e-toast-top-right { top: calc(var(--app-topbar-height) + var(--sf-space-3)) !important; }
+.app-dialog .e-dlg-content p { margin: 0; line-height: 1.5; color: var(--color-sf-fg-primary); }
+
+/* ---- Pages ---- */
+.page { max-width: var(--app-content-max); margin: 0 auto; padding: var(--sf-space-6) var(--sf-space-5) calc(var(--sf-space-6) * 2); }
+.page-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--sf-space-3) var(--sf-space-5); margin-bottom: var(--sf-space-6); }
+.page-header h1 { font-size: 24px; line-height: 32px; font-weight: 600; margin: 0; }
+.page-header p { margin: var(--sf-space-1) 0 0; color: var(--color-sf-fg-secondary); }
+.page-note { font-size: 13px; }
+.page h2 { display: flex; align-items: center; gap: var(--sf-space-2); font-size: 16px; font-weight: 600; margin: 0 0 var(--sf-space-3); }
+.page h2 .count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; font-size: 12px; background: var(--app-badge-neutral-bg); color: var(--app-badge-neutral-fg); }
+.page section + section { margin-top: calc(var(--sf-space-6) + var(--sf-space-2)); }
+
+.state { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--sf-space-2); padding: calc(var(--sf-space-6) * 1.5) var(--sf-space-6); text-align: center; color: var(--color-sf-fg-secondary); }
+.state p { margin: 0; }
+.state.error > svg { color: var(--color-sf-fg-danger-primary); }
+.state-title { font-weight: 600; font-size: 16px; color: var(--color-sf-fg-primary); }
+.state-actions { margin-top: var(--sf-space-3); display: flex; gap: var(--sf-space-3); }
+
+.status-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px var(--sf-space-2); border-radius: 999px; font-size: 12px; font-weight: 600; line-height: 16px; white-space: nowrap; }
+.status-badge.tone-info { background: var(--app-badge-info-bg); color: var(--app-badge-info-fg); }
+.status-badge.tone-success { background: var(--app-badge-success-bg); color: var(--app-badge-success-fg); }
+
+/* ---- My Documents: Syncfusion Card per document ---- */
+.delivery-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sf-space-4); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 767.98px) { .delivery-grid { grid-template-columns: 1fr; } }
+.delivery-grid > li { display: flex; }
+.e-card.delivery-item, .e-card.confirmed-panel { background: var(--app-delivery-card-surface); border: 1px solid var(--app-delivery-card-border); border-radius: var(--sf-radius-lg); box-shadow: var(--app-card-shadow); color: var(--color-sf-fg-primary); line-height: normal; }
+/* The card surfaces do nothing when clicked, so the theme's hover tint is turned off. */
+.e-card.confirmed-panel:hover { background: var(--app-delivery-card-surface); border-color: var(--app-delivery-card-border); box-shadow: var(--app-card-shadow); }
+/* A delivery card opens its delivery wherever it is tapped: its one link (.card-link) is stretched over the card.
+   The card shows the pointer, deepens its border and shadow on hover, and takes the focus ring of its link. */
+.e-card.delivery-item { position: relative; cursor: pointer; transition: border-color 120ms ease, box-shadow 120ms ease; }
+.e-card.delivery-item:hover { background: var(--app-delivery-card-surface); border-color: var(--app-delivery-card-hover-border); box-shadow: var(--app-card-shadow), 0 0 0 1px var(--app-delivery-card-hover-border); }
+.e-card.delivery-item:active { background: var(--color-sf-bg-brand-subtle); }
+.delivery-item .card-link { text-decoration: none; }
+/* The card's link looks like the button it replaces. It is an anchor, and the theme styles e-btn for buttons, so its
+   fill, text and states are set here from the app's tokens. Hovering the card is hovering its link. */
+.delivery-item a.card-link.e-btn.e-primary, .delivery-item a.card-link.e-btn.e-primary:focus { background: var(--app-brand-fill); border-color: var(--app-brand-fill); color: var(--app-on-brand); }
+.delivery-item a.card-link.e-btn.e-primary:hover { background: var(--app-brand-fill-hover); border-color: var(--app-brand-fill-hover); color: var(--app-on-brand); }
+.delivery-item a.card-link.e-btn.e-primary:active { background: var(--app-brand-fill-pressed); border-color: var(--app-brand-fill-pressed); color: var(--app-on-brand); }
+.delivery-item a.card-link.e-btn.e-outline, .delivery-item a.card-link.e-btn.e-outline:focus { background: var(--color-sf-bg-surface); border-color: var(--color-sf-border-primary); color: var(--color-sf-fg-primary); }
+.delivery-item a.card-link.e-btn.e-outline:hover { background: var(--color-sf-bg-surface-hover); border-color: var(--color-sf-border-brand); color: var(--color-sf-fg-primary); }
+.delivery-item a.card-link.e-btn.e-outline:active { background: var(--color-sf-bg-brand-subtle); color: var(--color-sf-fg-primary); }
+.delivery-item .card-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.delivery-item .card-link:focus-visible { outline: none; }
+.e-card.delivery-item:has(.card-link:focus-visible) { outline: 2px solid var(--app-focus-ring); outline-offset: 2px; }
+/* A second, different action on the card stays above the stretched link. */
+.delivery-item .card-own-action { position: relative; z-index: 1; }
+@media (prefers-reduced-motion: reduce) { .e-card.delivery-item { transition: none; } }
+.e-card.delivery-item { width: 100%; justify-content: flex-start; }
+.delivery-item .e-card-header { display: flex; align-items: flex-start; gap: var(--sf-space-3); padding: var(--sf-space-4) var(--sf-space-4) var(--sf-space-2); min-height: 0; }
+.delivery-item .e-card-header .e-card-header-caption { padding: 0; min-width: 0; }
+.delivery-item .e-card-header .e-card-header-caption .e-card-header-title { font-size: 16px; font-weight: 600; line-height: 22px; color: var(--color-sf-fg-primary); white-space: normal; }
+.delivery-item .e-card-header .e-card-header-caption .e-card-sub-title { font-size: 13px; line-height: 18px; color: var(--color-sf-fg-secondary); white-space: normal; padding: 0; }
+.delivery-item .e-card-content { padding: var(--sf-space-2) var(--sf-space-4) var(--sf-space-3); flex: 1; }
+.delivery-meta { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sf-space-3); }
+.delivery-meta dl, .confirmed-facts { margin: 0; display: grid; gap: var(--sf-space-1); width: 100%; }
+.delivery-meta dl > div, .confirmed-facts > div { display: flex; justify-content: space-between; gap: var(--sf-space-3); font-size: 13px; line-height: 20px; }
+.delivery-meta dt, .confirmed-facts dt { color: var(--color-sf-fg-secondary); }
+.delivery-meta dd, .confirmed-facts dd { margin: 0; font-weight: 500; text-align: right; }
+.delivery-item .e-card-actions { padding: var(--sf-space-3) var(--sf-space-4) var(--sf-space-4); border-top: 1px solid var(--app-delivery-card-border); }
+.delivery-actions, .confirmed-actions { display: flex; flex-wrap: wrap; gap: var(--sf-space-2); width: 100%; }
+.delivery-actions .e-btn, .confirmed-actions .e-btn { margin: 0; }
+
+/* ---- Signing Complete ---- */
+.confirmed-page { display: flex; justify-content: center; padding-top: calc(var(--sf-space-6) * 2); }
+.e-card.confirmed-panel { width: 100%; max-width: 560px; }
+.confirmed-panel .e-card-header { display: flex; align-items: flex-start; gap: var(--sf-space-3); padding: var(--sf-space-6) var(--sf-space-6) var(--sf-space-3); }
+.confirmed-panel .e-card-header .e-card-header-caption { padding: 0; min-width: 0; }
+.confirmed-panel .e-card-header .e-card-header-caption .e-card-header-title { font-size: 24px; line-height: 32px; font-weight: 600; margin: 0; color: var(--color-sf-fg-primary); white-space: normal; }
+.confirmed-panel .e-card-header .e-card-header-caption .e-card-sub-title { font-size: 14px; line-height: 20px; color: var(--color-sf-fg-secondary); white-space: normal; padding: var(--sf-space-1) 0 0; }
+.confirmed-icon { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 999px; background: var(--app-badge-success-bg); color: var(--app-badge-success-fg); }
+.confirmed-panel .e-card-content { padding: var(--sf-space-3) var(--sf-space-6); }
+.confirmed-facts { padding: var(--sf-space-3) var(--sf-space-4); border: 1px solid var(--app-delivery-card-border); border-radius: var(--sf-radius-md); background: var(--color-sf-bg-surface-muted); }
+.confirmed-note { margin-top: var(--sf-space-3); font-size: 13px; line-height: 20px; color: var(--color-sf-fg-secondary); }
+.confirmed-panel .e-card-actions { padding: var(--sf-space-3) var(--sf-space-6) var(--sf-space-6); }
+
+/* The delivery slip: carrier strip on top, and the signature shown as on paper in both themes. */
+.e-card.delivery-slip { overflow: hidden; }
+.slip-strip { display: flex; align-items: center; justify-content: space-between; gap: var(--sf-space-3); padding: var(--sf-space-3) var(--sf-space-6); background: var(--app-slip-strip-bg); color: var(--app-slip-strip-fg); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; width: 100%; box-sizing: border-box; }
+.slip-carrier { text-transform: uppercase; }
+.slip-signature { margin: var(--sf-space-3) 0 0; }
+.slip-signature figcaption { margin-bottom: var(--sf-space-1); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-sf-fg-secondary); }
+.slip-signature svg { display: block; width: 100%; height: 96px; background: var(--app-slip-signature-surface); border: 1px solid var(--app-slip-signature-border); border-radius: var(--sf-radius-md); }
+.slip-signature path { fill: none; stroke: var(--app-slip-signature-ink); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+
+/* ---- Sign Document ---- */
+.sign-page { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.sign-subheader { flex: none; display: flex; align-items: center; gap: var(--sf-space-3); padding: var(--sf-space-3) var(--sf-space-5); background: var(--app-sign-subheader-surface); border-bottom: 1px solid var(--color-sf-border-primary); }
+.sign-back { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: var(--sf-radius-md); color: var(--color-sf-fg-secondary); border: 1px solid var(--color-sf-border-primary); }
+.sign-back:hover { background: var(--color-sf-bg-surface-hover); color: var(--color-sf-fg-primary); border-color: var(--color-sf-border-brand); }
+.sign-titleblock { min-width: 0; flex: 1; }
+.sign-titleblock h1 { margin: 0; font-size: 16px; line-height: 22px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sign-status { margin: 4px 0 0; display: flex; }
+.tracking { font-variant-numeric: tabular-nums; }
+.delivery-stop { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 2px; min-width: 40px; height: 40px; padding: 0 var(--sf-space-2); border-radius: var(--sf-radius-md); font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; background: var(--app-stop-bg); color: var(--app-stop-fg); }
+.delivery-item[data-delivered="true"] .delivery-stop { background: var(--app-stop-done-bg); color: var(--app-stop-done-fg); }
+.e-card.delivery-item, .e-card.delivery-item:hover { border-left-width: 4px; border-left-style: solid; border-left-color: var(--app-stop-bg); }
+.e-card.delivery-item[data-delivered="true"], .e-card.delivery-item[data-delivered="true"]:hover { border-left-color: var(--app-stop-done-bg); }
+
+/* ---- Route strip: a display-only Card holding the Syncfusion Stepper ---- */
+.e-card.route-strip, .e-card.route-strip:hover { background: var(--app-route-surface); border: 1px solid var(--app-route-border); border-radius: var(--sf-radius-lg); box-shadow: var(--app-card-shadow); color: var(--color-sf-fg-primary); line-height: normal; margin-bottom: var(--sf-space-6); }
+.route-strip .e-card-content { padding: var(--sf-space-4) var(--sf-space-5) var(--sf-space-3); }
+.route-summary { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sf-space-3); margin: 0 0 var(--sf-space-3); font-size: 13px; color: var(--color-sf-fg-secondary); }
+.route-summary strong { font-size: 14px; color: var(--color-sf-fg-primary); }
+/* Read-only: the steps report progress and are not navigation, so they do not look clickable. */
+.route-stepper.e-stepper .e-step-container, .route-stepper.e-stepper .e-step, .route-stepper.e-stepper .e-step-label-container { cursor: default; }
+.route-stepper.e-stepper .e-step-container .e-label { font-size: 13px; }
+/* Each stop's own indicator: neutral with a pin while awaiting, the success tone with a check once delivered. */
+.route-stepper.e-stepper .e-step-container.route-step-awaiting .e-indicator.e-icons { background: var(--app-badge-neutral-bg); color: var(--app-badge-neutral-fg); border-color: var(--color-sf-border-primary); }
+.route-stepper.e-stepper .e-step-container.route-step-delivered .e-indicator.e-icons { background: var(--app-stop-done-bg); color: var(--app-stop-done-fg); border-color: var(--app-stop-done-bg); }
+.route-stepper.e-stepper .e-step-container.route-step-awaiting .e-label { color: var(--color-sf-fg-secondary); }
+.route-stepper.e-stepper .e-step-container.route-step-delivered .e-label { color: var(--color-sf-fg-primary); font-weight: 600; }
+@media (max-width: 639.98px) { .route-stepper.e-stepper .e-step-label-container { display: none; } .route-strip .e-card-content { padding: var(--sf-space-3); } }
+.sign-actions { flex: none; display: flex; gap: var(--sf-space-2); }
+.sign-actions .e-btn { min-height: 36px; }
+.sign-body { flex: 1; min-height: 0; display: flex; }
+.viewer-wrap { position: relative; flex: 1; min-width: 0; min-height: 0; display: flex; }
+.viewer-area { position: relative; flex: 1; min-width: 0; min-height: 0; background: var(--app-viewer-canvas); }
+/* Next beside the receipt page: a flag half-way down the viewer, pointing at the signature box it has just
+   brought to the middle of the view. It stays put while the receipt scrolls. */
+.next-flag { position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 4; display: inline-flex; align-items: center; gap: var(--sf-space-2);
+  min-height: var(--app-touch-target); padding: 0 calc(var(--sf-space-4) + var(--app-next-flag-point)) 0 var(--sf-space-3); border: 0;
+  background: var(--app-next-flag-bg); color: var(--app-next-flag-fg); font-weight: 700; font-size: 14px; box-shadow: var(--app-card-shadow);
+  clip-path: polygon(0 0, calc(100% - var(--app-next-flag-point)) 0, 100% 50%, calc(100% - var(--app-next-flag-point)) 100%, 0 100%); }
+.next-flag[data-beside="viewer"] { padding-left: var(--sf-space-2); padding-right: calc(var(--sf-space-2) + var(--app-next-flag-point)); }
+.next-flag[data-beside="viewer"] .next-flag-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.next-flag:hover { background: var(--app-next-flag-bg-hover); }
+.next-flag:active { background: var(--app-next-flag-bg-pressed); }
+.next-flag:focus-visible { outline-offset: -4px; outline-color: var(--app-next-flag-fg); }
+@media (max-width: 1023.98px) { .next-flag { top: auto; bottom: var(--sf-space-5); transform: none; } }
+.viewer-area > .state { height: 100%; }
+/* One loading indicator at a time: the viewer shows its own spinner while it loads, so it stays hidden
+   behind the app's "Loading document…" until the document is ready. */
+.viewer-area[data-viewer-state="loading"] .e-pdfviewer { visibility: hidden; }
+@media (max-width: 1023.98px) {
+  .sign-subheader { flex-wrap: wrap; padding: var(--sf-space-3); }
+}
+@media (max-width: 639.98px) {
+  .sign-actions { width: 100%; }
+  .sign-actions .e-btn { flex: 1; min-height: var(--app-touch-target); }
+  .page { padding: var(--sf-space-5) var(--sf-space-3) var(--sf-space-6); }
+}
+
+/* The signature dialog's drawing area and the PDF page stay white in dark mode: a document is paper (DESIGN.md). */
+/* The viewer sizes its signature dialog for the save-signature row, which this app hides (drawing only); without
+   this the dialog ends in an empty band under its buttons. */
+.e-dialog.e-pv-signature-window.e-pv-signature-dialog-height { height: auto !important; min-height: 0 !important; }
+
+
+/* /healthz: a plain status page outside the shell; it must read before the Syncfusion theme has loaded. */
+.healthz { max-width: 640px; margin: var(--sf-space-6) auto; padding: var(--sf-space-6); background: var(--app-card-bg); border: 1px solid var(--app-card-border); border-radius: var(--sf-radius-lg); box-shadow: var(--app-card-shadow); }
+.healthz h1 { margin: 0 0 var(--sf-space-4); font-size: 24px; font-weight: 600; }
+.healthz dl { margin: 0; display: grid; grid-template-columns: 160px 1fr; gap: var(--sf-space-2); font-size: 14px; }
+.healthz dt { color: var(--color-sf-fg-secondary); }
+.healthz dd { margin: 0; overflow-wrap: anywhere; }
+.healthz dd.tone-success { color: var(--color-sf-fg-success-primary); font-weight: 600; }
+.healthz dd.tone-danger { color: var(--color-sf-fg-danger-primary); font-weight: 600; }
+@media (max-width: 639.98px) { .healthz { margin: var(--sf-space-3); padding: var(--sf-space-4); } .healthz dl { grid-template-columns: 1fr; } .healthz dt { margin-top: var(--sf-space-2); } }
